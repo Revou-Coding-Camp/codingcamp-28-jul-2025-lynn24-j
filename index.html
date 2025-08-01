@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC.id</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="codingcamp-28-jul-2025-lynn24-j/css/styles.css">
+    <style>
+        .logo {
+            background-image: url('jc logo.png');
+            background-size: cover;
+            background-position: center;
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+        }
+       #home, #portfolio, #our-profile {
+        font-weight: 700;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+       }
+        </style>
+</head>
+<body>    
+    <header class="flex items-center justify-between p-4">
+          <div class="logo rounded-full"></div>
+          <nav class="flex space-x-4">
+            <a class="border rounded px-2 py-2 hover:bg-blue-600 transition text-sm" href="#home">Home</a>
+            <a class="border rounded px-2 py-2 hover:bg-blue-600 transition text-sm" href="#our-profile">Our Profile</a>
+            <a class="border rounded px-2 py-2 hover:bg-blue-600 transition text-sm" href="#portfolio">Portfolio</a>
+            <a class="border rounded px-2 py-2 hover:bg-blue-600 transition text-sm" href="#message-us">Message Us</a>
+        </nav>
+
+    </header>
+
+    <hr weight="1" class="my-4"/>
+    <main>
+        <section id="home" class="p-4 min-h-[500px] text-center">
+            <h1 class="text-5xl font-bold bg-blue-300 rounded p-4" >Hi <span id="user-name"></span>! Welcome to JC.id!</h1>
+            <p class="text-2xl mt-2">Your photography expert.</p>
+            <img src="gambar.jpg" class="mx-auto mt-4 object-contain">
+            <p class="text-xl mt-2">Your journey start here.</p>
+        </section>
+        <hr/>
+        <section id="our-profile" class="p-4 min-h-[500px]  text-center">
+            <h2 class="text-5xl font-bold bg-blue-300 rounded p-4">Our Profile</h2>
+            <p class="text-4xl mt-2 ">About us</p>
+            <p class="text-2xl">We are a team of dedicated professionals committed to delivering the best services.</p>
+                
+            <aside class="mt-4">
+                <h3 class="text-3xl font-semibold text-center">Our Vision And Mission</h3>
+                <br/>
+                <p class="text-left text-2xl bg-blue-100"> Vision: To be the leading photography service provider in the region.
+                </p>
+                <br/>
+                    <p class="text-left text-2xl bg-blue-100">Mission: To capture moments that matter and provide exceptional service to our clients. </p>
+        </section>
+        <hr/>
+        <section id="portfolio" class="p-4 min-h-[500px] text-center">
+            <h2 class="text-5xl font-semibold bg-blue-300 rounded p-4">Portfolio</h2>
+            <p class="text-2xl">Check out our amazing programs!</p>
+            <img src="photo.jpeg" class="mx-auto mt-4 object-contain">
+            <p class="text-2xl bg-blue-200 rounded">Mastering Photography in just 3 months.</p>        
+        </section>
+        <hr/>
+
+        <div class="flex gap-8">
+          <section id="message-us" class="p-4 min-h-[500px] w-full md:w-1/2">
+              <h2 class="text-5xl font-semibold bg-blue-300 rounded p-4">Message Us</h2>
+              <p class="text-2xl">Feel free to reach out with any questions or inquiries.</p>
+
+              <form id="message-form" class="mt-4 bg-gray-100 p-4 rounded shadow w-full max-w-md">
+                  <input type="text" id="visitor-name" class="border rounded w-full p-2 mb-2" placeholder="Your Name" required>
+                  <input type="number" id="visitor-age" class="border rounded w-full p-2 mb-2" placeholder="Your Age" required>
+                  <input type="datetime-local" id="visitor-date" class="border rounded w-full p-2 mb-2" placeholder="Date and Time" required>
+
+                  <textarea type="text" id="visitor-message" class="border rounded w-full text-left" placeholder="Your Message" required>
+                  </textarea>
+                  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"  onclick="validateForm()">Send</button>
+
+              </form>
+              <div id="message-success" class="text-green-600 mt-2 hidden">Thank you for your message!</div>
+          </section>
+          <aside class="min-h-[100px] m-0 md:m-10 rounded-[4px] bg-blue-200 p-4 max-w-md w-full md:w-1/2">
+              <h3 class="font-bold mb-2">Form Result</h3>
+              <div id="result-form" class="whitespace-pre-line"></div>
+          </aside>
+        </div>
+        <hr/>
+        
+        
+    </main>
+      <footer class="text-center p-[20px] bg-blue-300">
+        <p>&copy; 2025 JC.id. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+          let userName = "";
+    while (!userName) {
+        userName = prompt("Enter your name:");
+        if (userName === null) { 
+            userName = "Pengunjung"; 
+            break;
+        }
+        userName = userName.trim();
+    }
+    document.getElementById("user-name").textContent = userName;
+
+    document.getElementById('message-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('visitor-name').value;
+        const age = document.getElementById('visitor-age').value;
+        const date = document.getElementById('visitor-date').value;
+        const message = document.getElementById('visitor-message').value;
+
+        const result = `
+Name: ${name}
+Age: ${age}
+Date & Time: ${date}
+Message: ${message}
+        `;
+        document.getElementById('result-form').textContent = result;
+        document.getElementById('message-success').classList.remove('hidden');
+        setTimeout(() => {
+            document.getElementById('message-success').classList.add('hidden');
+        }, 2000);
+        this.reset();
+    });
+    </script>
+</body>
+</html>
